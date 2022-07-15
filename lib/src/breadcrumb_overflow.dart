@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_breadcrumb/flutter_breadcrumb.dart';
 import 'package:flutter_breadcrumb/src/breadcrumb_widget.dart';
 
@@ -204,8 +204,7 @@ class ScrollableOverflow extends BreadCrumbOverflow {
   }
 
   @override
-  Widget build(
-      BuildContext context, List<BreadCrumbItem> items, Widget? divider) {
+  Widget build(BuildContext context, List<BreadCrumbItem> items, Widget? divider) {
     final widgetList = widgetItems(items, divider);
     return SingleChildScrollView(
       scrollDirection: direction,
@@ -214,9 +213,7 @@ class ScrollableOverflow extends BreadCrumbOverflow {
       physics: physics,
       primary: primary,
       reverse: reverse,
-      child: direction == Axis.horizontal
-          ? Row(children: widgetList)
-          : Column(children: widgetList),
+      child: direction == Axis.horizontal ? Row(children: widgetList) : Column(children: widgetList),
     );
   }
 }
