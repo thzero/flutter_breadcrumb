@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_breadcrumb/flutter_breadcrumb.dart';
 
-class BreadCrumbTile extends StatelessWidget {
-  final BreadCrumbItem breadCrumbItem;
+import 'package:flutter_breadcrumb/src/breadcrumb_tile.dart';
+import 'package:flutter_breadcrumb/src/material/breadcrumb_item.dart';
 
-  const BreadCrumbTile({Key? key, required this.breadCrumbItem})
-      : super(key: key);
+class MaterialBreadCrumbTile extends BreadCrumbTile {
+  const MaterialBreadCrumbTile({Key? key, required MaterialBreadCrumbItem breadCrumbItem}) : super(breadCrumbItem: breadCrumbItem, key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: breadCrumbItem.margin,
       child: Material(
-        color: breadCrumbItem.isEnable
-            ? breadCrumbItem.color
-            : breadCrumbItem.disableColor,
+        color: breadCrumbItem.isEnable ? breadCrumbItem.color : breadCrumbItem.disableColor,
         shape: RoundedRectangleBorder(
           borderRadius: breadCrumbItem.borderRadius,
           side: breadCrumbItem.border,
@@ -27,9 +24,7 @@ class BreadCrumbTile extends StatelessWidget {
             padding: breadCrumbItem.padding,
             child: DefaultTextStyle.merge(
               style: TextStyle(
-                color: breadCrumbItem.isEnable
-                    ? breadCrumbItem.textColor
-                    : breadCrumbItem.disabledTextColor,
+                color: breadCrumbItem.isEnable ? breadCrumbItem.textColor : breadCrumbItem.disabledTextColor,
               ),
               child: breadCrumbItem.content,
             ),

@@ -26,24 +26,18 @@ class _ScrollBehaviorState extends State<ScrollBehavior> {
         child: Container(
           margin: EdgeInsets.symmetric(horizontal: 12, vertical: 16),
           width: double.infinity,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(4),
-              color: Colors.white,
-              boxShadow: [
-                BoxShadow(
-                    offset: Offset(0, 1), blurRadius: 3, color: Colors.black26)
-              ]),
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(4), color: Colors.white, boxShadow: [BoxShadow(offset: Offset(0, 1), blurRadius: 3, color: Colors.black26)]),
           padding: EdgeInsets.all(8),
-          child: BreadCrumb.builder(
+          child: MaterialBreadCrumb.builder(
             itemCount: _itemCount,
             builder: (index) {
-              return BreadCrumbItem(content: Text('Item $index'), onTap: () {});
+              return MaterialBreadCrumbItem(content: Text('Item $index'), onTap: () {});
             },
             divider: Icon(
               Icons.chevron_right,
               color: Colors.red,
             ),
-            overflow: ScrollableOverflow(
+            overflowOverride: MaterialScrollableOverflow(
               direction: _isHorizontal ? Axis.horizontal : Axis.vertical,
               reverse: _reverse,
               keepLastDivider: _lastDivider,

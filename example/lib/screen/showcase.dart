@@ -29,14 +29,13 @@ class ShowCases extends StatelessWidget {
             children: <Widget>[
               ShowcaseItem(
                 title: 'BreadCrumb with Scrollable Overflow content:',
-                content: BreadCrumb.builder(
+                content: MaterialBreadCrumb.builder(
                   itemCount: ExampleConst.breadcrumbs.length,
-                  builder: (index) => BreadCrumbItem(
+                  builder: (index) => MaterialBreadCrumbItem(
                     content: Text(
                       ExampleConst.breadcrumbs[index],
                       style: TextStyle(
-                        fontWeight:
-                            index < 3 ? FontWeight.bold : FontWeight.normal,
+                        fontWeight: index < 3 ? FontWeight.bold : FontWeight.normal,
                         fontSize: 14,
                       ),
                     ),
@@ -51,19 +50,18 @@ class ShowCases extends StatelessWidget {
                     Icons.chevron_right,
                     color: Colors.grey,
                   ),
-                  overflow: ScrollableOverflow(),
+                  overflowOverride: MaterialScrollableOverflow(),
                 ),
               ),
               ShowcaseItem(
                 title: 'BreadCrumb with Wrap Overflow content:',
-                content: BreadCrumb.builder(
+                content: MaterialBreadCrumb.builder(
                   itemCount: ExampleConst.breadcrumbs.length,
-                  builder: (index) => BreadCrumbItem(
+                  builder: (index) => MaterialBreadCrumbItem(
                     content: Text(
                       ExampleConst.breadcrumbs[index],
                       style: TextStyle(
-                        fontWeight:
-                            index < 3 ? FontWeight.bold : FontWeight.normal,
+                        fontWeight: index < 3 ? FontWeight.bold : FontWeight.normal,
                       ),
                     ),
                     borderRadius: BorderRadius.circular(4),
@@ -77,21 +75,19 @@ class ShowCases extends StatelessWidget {
                     Icons.chevron_right,
                     color: Colors.grey,
                   ),
-                  overflow: WrapOverflow(),
+                  overflowOverride: MaterialWrapOverflow(),
                 ),
               ),
               ShowcaseItem(
                 title: 'BreadCrumb Home Icon:',
-                content: BreadCrumb.builder(
+                content: MaterialBreadCrumb.builder(
                   itemCount: ExampleConst.breadcrumbs.length,
-                  builder: (index) => BreadCrumbItem(
+                  builder: (index) => MaterialBreadCrumbItem(
                     content: index != 0
                         ? Text(
                             ExampleConst.breadcrumbs[index],
                             style: TextStyle(
-                              fontWeight: index < 3
-                                  ? FontWeight.bold
-                                  : FontWeight.normal,
+                              fontWeight: index < 3 ? FontWeight.bold : FontWeight.normal,
                             ),
                           )
                         : Row(
@@ -101,9 +97,7 @@ class ShowCases extends StatelessWidget {
                               Text(
                                 ExampleConst.breadcrumbs[index],
                                 style: TextStyle(
-                                  fontWeight: index < 3
-                                      ? FontWeight.bold
-                                      : FontWeight.normal,
+                                  fontWeight: index < 3 ? FontWeight.bold : FontWeight.normal,
                                 ),
                               ),
                             ],
@@ -119,14 +113,14 @@ class ShowCases extends StatelessWidget {
                     Icons.chevron_right,
                     color: Colors.grey,
                   ),
-                  overflow: ScrollableOverflow(),
+                  overflowOverride: MaterialScrollableOverflow(),
                 ),
               ),
               ShowcaseItem(
                 title: 'BreadCrumb Icons Items:',
-                content: BreadCrumb.builder(
+                content: MaterialBreadCrumb.builder(
                   itemCount: ExampleConst.breadcrumbs.length,
-                  builder: (index) => BreadCrumbItem(
+                  builder: (index) => MaterialBreadCrumbItem(
                     content: Icon(
                       ExampleConst.breadcrumbsIcon[index],
                       color: Colors.white,
@@ -145,19 +139,18 @@ class ShowCases extends StatelessWidget {
                     Icons.chevron_right,
                     color: Colors.grey,
                   ),
-                  overflow: ScrollableOverflow(),
+                  overflowOverride: MaterialScrollableOverflow(),
                 ),
               ),
               ShowcaseItem(
                 title: 'BreadCrumb with Custom Divider:',
-                content: BreadCrumb.builder(
+                content: MaterialBreadCrumb.builder(
                   itemCount: ExampleConst.breadcrumbs.length,
-                  builder: (index) => BreadCrumbItem(
+                  builder: (index) => MaterialBreadCrumbItem(
                     content: Text(
                       ExampleConst.breadcrumbs[index],
                       style: TextStyle(
-                        fontWeight:
-                            index < 3 ? FontWeight.bold : FontWeight.normal,
+                        fontWeight: index < 3 ? FontWeight.bold : FontWeight.normal,
                         fontSize: 14,
                       ),
                     ),
@@ -178,14 +171,14 @@ class ShowCases extends StatelessWidget {
                       ),
                     ),
                   ),
-                  overflow: ScrollableOverflow(),
+                  overflowOverride: MaterialScrollableOverflow(),
                 ),
               ),
               ShowcaseItem(
                 title: 'BreadCrumb with Complicated Items:',
-                content: BreadCrumb.builder(
+                content: MaterialBreadCrumb.builder(
                   itemCount: ExampleConst.breadcrumbs.length,
-                  builder: (index) => BreadCrumbItem(
+                  builder: (index) => MaterialBreadCrumbItem(
                     content: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
@@ -198,9 +191,7 @@ class ShowCases extends StatelessWidget {
                           child: Text(
                             ExampleConst.breadcrumbs[index],
                             style: TextStyle(
-                              fontWeight: index < 3
-                                  ? FontWeight.bold
-                                  : FontWeight.normal,
+                              fontWeight: index < 3 ? FontWeight.bold : FontWeight.normal,
                               fontSize: 14,
                             ),
                           ),
@@ -227,22 +218,21 @@ class ShowCases extends StatelessWidget {
                       ),
                     ),
                   ),
-                  overflow: ScrollableOverflow(),
+                  overflowOverride: MaterialScrollableOverflow(),
                 ),
               ),
               ShowcaseItem(
                 title: 'BreadCrumb with Complicated Items:',
-                content: BreadCrumb.builder(
+                content: MaterialBreadCrumb.builder(
                   itemCount: ExampleConst.breadcrumbs.length,
-                  builder: (index) => BreadCrumbItem(
+                  builder: (index) => MaterialBreadCrumbItem(
                     content: index == 0
                         ? Container(
                             decoration: BoxDecoration(
                               color: Colors.black12,
                               borderRadius: BorderRadius.circular(4),
                             ),
-                            padding: EdgeInsets.symmetric(
-                                vertical: 4, horizontal: 6),
+                            padding: EdgeInsets.symmetric(vertical: 4, horizontal: 6),
                             child: Text(
                               '⬤ ⬤ ⬤',
                               style: TextStyle(color: Colors.grey, fontSize: 7),
@@ -266,7 +256,7 @@ class ShowCases extends StatelessWidget {
                     Icons.chevron_right,
                     color: Colors.grey,
                   ),
-                  overflow: ScrollableOverflow(),
+                  overflowOverride: MaterialScrollableOverflow(),
                 ),
               ),
             ],
@@ -298,13 +288,7 @@ class ShowcaseItem extends StatelessWidget {
         Text(title),
         Container(
           width: double.infinity,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(4),
-              color: Colors.white,
-              boxShadow: [
-                BoxShadow(
-                    offset: Offset(0, 1), blurRadius: 3, color: Colors.black26)
-              ]),
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(4), color: Colors.white, boxShadow: [BoxShadow(offset: Offset(0, 1), blurRadius: 3, color: Colors.black26)]),
           padding: EdgeInsets.all(8),
           child: content,
         ),

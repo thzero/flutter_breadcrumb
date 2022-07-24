@@ -1,8 +1,9 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_breadcrumb/flutter_breadcrumb.dart';
-import 'package:flutter_breadcrumb/src/breadcrumb_widget.dart';
 
-abstract class BreadCrumbOverflow {
+import 'package:flutter_breadcrumb/src/breadcrumb_item.dart';
+import 'package:flutter_breadcrumb/src/breadcrumb_tile.dart';
+
+abstract class BreadCrumbOverflow<T extends BreadCrumbItem> {
   ///this value determine the last divider should render or not
   bool get keepLastDivider;
 
@@ -10,18 +11,18 @@ abstract class BreadCrumbOverflow {
 
   /// creates List<Widget> with [items] and [divider] parameters
   /// and this list will use in [build] method
-  List<Widget> widgetItems(List<BreadCrumbItem> items, Widget divider);
+  List<Widget> widgetItems(List<T> items, Widget divider);
 
   ///creates widget that should show [items] and [divider]
   Widget build(
     BuildContext context,
-    List<BreadCrumbItem> items,
+    List<T> items,
     Widget? divider,
   );
 }
 
 ///subclass of [BreadCrumbOverflow] that use [Wrap] Widget to show his items
-class WrapOverflow extends BreadCrumbOverflow {
+abstract class WrapOverflow<T extends BreadCrumbItem, U extends BreadCrumbTile> extends BreadCrumbOverflow<T> {
   const WrapOverflow({
     this.keepLastDivider = false,
     this.direction = Axis.horizontal,
@@ -64,16 +65,16 @@ class WrapOverflow extends BreadCrumbOverflow {
   final VerticalDirection verticalDirection;
 
   @override
-  List<Widget> widgetItems(List<BreadCrumbItem> items, Widget? divider) {
+  List<Widget> widgetItems(List<T> items, Widget? divider) {
     var widgetItems = <Widget>[];
 
     if (divider != null) {
-      items.forEach((item) {
+      for (var item in items) {
         widgetItems.add(
-          BreadCrumbTile(breadCrumbItem: item),
+          constructBreadCrumbTile(item),
         );
         widgetItems.add(divider);
-      });
+      }
       if (!keepLastDivider) {
         widgetItems.removeLast();
       }
@@ -82,17 +83,19 @@ class WrapOverflow extends BreadCrumbOverflow {
     if (widgetItems.isEmpty) {
       widgetItems = items
           .map<Widget>(
-            (item) => BreadCrumbTile(breadCrumbItem: item),
+            (item) => constructBreadCrumbTile(item),
           )
           .toList();
     }
     return widgetItems;
   }
 
+  U constructBreadCrumbTile(T breadCrumbItem);
+
   @override
   Widget build(
     BuildContext context,
-    List<BreadCrumbItem> items,
+    List<T> items,
     Widget? divider,
   ) {
     return Wrap(
@@ -109,7 +112,7 @@ class WrapOverflow extends BreadCrumbOverflow {
   }
 }
 
-class ScrollableOverflow extends BreadCrumbOverflow {
+abstract class ScrollableOverflow<T extends BreadCrumbItem, U extends BreadCrumbTile> extends BreadCrumbOverflow<T> {
   ScrollableOverflow({
     this.keepLastDivider = false,
     this.direction = Axis.horizontal,
@@ -178,16 +181,16 @@ class ScrollableOverflow extends BreadCrumbOverflow {
   final ScrollPhysics? physics;
 
   @override
-  List<Widget> widgetItems(List<BreadCrumbItem> items, Widget? divider) {
+  List<Widget> widgetItems(List<T> items, Widget? divider) {
     var widgetItems = <Widget>[];
 
     if (divider != null) {
-      items.forEach((item) {
+      for (var item in items) {
         widgetItems.add(
-          BreadCrumbTile(breadCrumbItem: item),
+          constructBreadCrumbTile(item),
         );
         widgetItems.add(divider);
-      });
+      }
       if (!keepLastDivider) {
         widgetItems.removeLast();
       }
@@ -196,7 +199,7 @@ class ScrollableOverflow extends BreadCrumbOverflow {
     if (items.isEmpty) {
       widgetItems = items
           .map<Widget>(
-            (item) => BreadCrumbTile(breadCrumbItem: item),
+            (item) => constructBreadCrumbTile(item),
           )
           .toList();
     }
@@ -204,7 +207,7 @@ class ScrollableOverflow extends BreadCrumbOverflow {
   }
 
   @override
-  Widget build(BuildContext context, List<BreadCrumbItem> items, Widget? divider) {
+  Widget build(BuildContext context, List<T> items, Widget? divider) {
     final widgetList = widgetItems(items, divider);
     return SingleChildScrollView(
       scrollDirection: direction,
@@ -216,4 +219,6 @@ class ScrollableOverflow extends BreadCrumbOverflow {
       child: direction == Axis.horizontal ? Row(children: widgetList) : Column(children: widgetList),
     );
   }
+
+  U constructBreadCrumbTile(T breadCrumbItem);
 }

@@ -1,14 +1,14 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
-class BreadCrumbItem {
+abstract class BreadCrumbItem {
   BreadCrumbItem({
     required this.content,
     this.padding = EdgeInsets.zero,
     this.margin = EdgeInsets.zero,
     this.onTap,
-    this.color = Colors.transparent,
-    this.disableColor = Colors.transparent,
-    this.splashColor = Colors.transparent,
+    required this.color,
+    required this.disableColor,
+    required this.splashColor,
     this.textColor,
     this.disabledTextColor,
     this.borderRadius = BorderRadius.zero,

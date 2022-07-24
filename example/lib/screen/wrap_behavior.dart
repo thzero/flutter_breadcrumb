@@ -33,24 +33,18 @@ class _WrapBehaviorState extends State<WrapBehavior> {
         child: Container(
           margin: EdgeInsets.all(12),
           width: double.infinity,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(4),
-              color: Colors.white,
-              boxShadow: [
-                BoxShadow(
-                    offset: Offset(0, 1), blurRadius: 3, color: Colors.black26)
-              ]),
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(4), color: Colors.white, boxShadow: [BoxShadow(offset: Offset(0, 1), blurRadius: 3, color: Colors.black26)]),
           padding: EdgeInsets.all(8),
-          child: BreadCrumb.builder(
+          child: MaterialBreadCrumb.builder(
             itemCount: _itemCount,
             builder: (index) {
-              return BreadCrumbItem(content: Text('Item $index'), onTap: () {});
+              return MaterialBreadCrumbItem(content: Text('Item $index'), onTap: () {});
             },
             divider: Icon(
               Icons.chevron_right,
               color: Colors.red,
             ),
-            overflow: WrapOverflow(
+            overflowOverride: MaterialWrapOverflow(
               direction: _isHorizontal ? Axis.horizontal : Axis.vertical,
               alignment: WrapAlignment.values[_alignment],
               crossAxisAlignment: WrapCrossAlignment.values[_crossAlignment],
@@ -142,8 +136,7 @@ class _WrapBehaviorState extends State<WrapBehavior> {
               ),
               onPressed: () {
                 setState(() {
-                  if (_verticalDirection <
-                      VerticalDirection.values.length - 1) {
+                  if (_verticalDirection < VerticalDirection.values.length - 1) {
                     _verticalDirection++;
                   } else {
                     _verticalDirection = 0;
